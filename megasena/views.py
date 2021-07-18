@@ -10,7 +10,8 @@ from django.views import View
 class UltimoSorteioView(View):
     def get(self,request):
         MegaSenaDraw()
-        dict_obj = model_to_dict(SorteioMegaSena.objects.last())
-        serialized = json.dumps(dict_obj,cls=DjangoJSONEncoder)
-        load_json = json.loads(serialized)
-        return JsonResponse(load_json,safe=False)
+        dict_obj = SorteioMegaSena.objects.order_by("-date").values()[0]
+        print(type(dict_obj))
+        # serialized = json.dumps(dict_obj,cls=DjangoJSONEncoder)
+        # load_json = json.loads(serialized)
+        return JsonResponse(dict_obj)

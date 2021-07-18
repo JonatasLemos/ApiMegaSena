@@ -12,3 +12,10 @@ for i in range(3):
     instance = {f'dezena{str(j + 1)}': sorteio[j] for j in range(6)}
     instance["date"] = random_dates[i]
     instances.append(instance)
+# NovoJogo model additional values
+additional_values = {
+    "dezenas":8,
+    "acertos":4,
+    "dezena7":9,
+    "dezena8":12
+}
