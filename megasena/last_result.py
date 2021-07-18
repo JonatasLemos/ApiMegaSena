@@ -61,5 +61,3 @@ def update_last_draw():
             sorteio1 = SorteioMegaSena(**data_instance)
             sorteio1.save()
             return True
-
-update_last_draw()
