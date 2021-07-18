@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from megasena.models import SorteioMegaSena
 from megasena.tests.fake_data import instances
 
-class IndexViewTestCase(TestCase):
+class MegaSenaDrawTestCase(TestCase):
 
     def setUp(self):
         SorteioMegaSena.objects.bulk_create([SorteioMegaSena(**instances[i]) for i in range(len(instances))])

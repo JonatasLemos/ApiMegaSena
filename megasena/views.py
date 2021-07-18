@@ -3,12 +3,13 @@ from django.core.serializers.json import DjangoJSONEncoder
 from django.forms import model_to_dict
 from django.http import JsonResponse
 from megasena.models import SorteioMegaSena
-from megasena.last_result import update_last_draw
+from megasena.megasena_scraper import MegaSenaDraw
+from django.views import View
 
 # Create your views here.
-def ultimo_sorteio(request):
-    if request.method == 'GET':
-        update_last_draw()
+class UltimoSorteioView(View):
+    def get(self,request):
+        MegaSenaDraw()
         dict_obj = model_to_dict(SorteioMegaSena.objects.last())
         serialized = json.dumps(dict_obj,cls=DjangoJSONEncoder)
         load_json = json.loads(serialized)
