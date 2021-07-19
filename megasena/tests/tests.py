@@ -10,6 +10,7 @@ class MegaSenaDrawTestCase(TestCase):
     def setUp(self):
         SorteioMegaSena.objects.bulk_create([SorteioMegaSena(**instances[i]) for i in range(len(instances))])
         self.all_records = SorteioMegaSena.objects.all()
+        print(SorteioMegaSena.objects.order_by("date").last().date)
 
     def test_verify_items(self):
         self.assertEqual(len(self.all_records),len(instances))

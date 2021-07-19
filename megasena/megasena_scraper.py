@@ -16,11 +16,12 @@ class MegaSenaDraw:
     def __init__(self):
         self.__current_time = datetime.now(MegaSenaDraw.tz)
         self.__count_draws = SorteioMegaSena.objects.count()
-        self.__last_draw = SorteioMegaSena.objects.all().order_by("date").last().date
+        self.__last_draw = SorteioMegaSena.objects.order_by("date").last().date
+        self.runScraper = self.check_new_megasena_draw()
         self.update_last_draw()
 
     def update_last_draw(self):
-        if self.check_new_megasena_draw():
+        if self.runScraper:
             web_scraper = WebScraper()
             date = web_scraper.date
             if self.__last_draw != date:
@@ -60,5 +61,4 @@ class WebScraper:
     @property
     def dezenas(self):
         spans = self.__soup.findAll('span', class_="zSMazd UHlKbe")
-        dezenas = [span.get_text() for span in spans]
-        return dezenas
+        return [span.get_text() for span in spans]

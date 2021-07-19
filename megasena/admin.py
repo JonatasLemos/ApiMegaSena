@@ -3,8 +3,9 @@ from megasena.models import SorteioMegaSena,NovoJogo
 
 class MegaSenaList(admin.ModelAdmin):
     list_display = ('id', 'dezena1', 'date')
-    # list_display_links = ('id','artist','album')
+    list_display_links = ('id','date')
     # search_fields = ('artist','album')
+    ordering = ('id',)
     list_filter = ('id',)
     list_per_page = 10
 

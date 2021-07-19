@@ -27,10 +27,10 @@ class Jogo:
         sorteio_usuario = set(self.sorteio_usuario)
         ultimo_sorteio = set(Jogo.ultimo_sorteio)
         dezenas_certas = ultimo_sorteio.intersection(sorteio_usuario)
-        ultimo_sorteio = list(ultimo_sorteio)
-        sorteio_usuario = list(sorteio_usuario)
-        ultimo_sorteio.sort()
-        sorteio_usuario.sort()
+        # ultimo_sorteio = list(ultimo_sorteio)
+        # sorteio_usuario = list(sorteio_usuario)
+        # ultimo_sorteio.sort()
+        # sorteio_usuario.sort()
         # print(list(ultimo_sorteio))
         # print(list(sorteio_usuario))
         # print(len(dezenas_certas))
@@ -44,5 +44,3 @@ class Jogo:
         jogo = NovoJogo(**novo_jogo)
         jogo.save()
 
-
-a = Jogo(8)
