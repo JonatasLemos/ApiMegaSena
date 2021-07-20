@@ -44,6 +44,7 @@ class MegaSenaDraw:
                 sorteio1 = SorteioMegaSena(**data_instance)
                 sorteio1.save()
 
+
 class WebScraper:
     """Criar object soup para scraping"""
     query = urllib.parse.quote_plus("caixa mega sena")

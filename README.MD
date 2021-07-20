@@ -1,77 +1,74 @@
-# Sobre
-Ester README tem por objetivo fornecer as informações necessárias para avaliação de candidatos para a linguagem Python.
-#  🏗   O que fazer?
+<!-- TABLE OF CONTENTS -->
 
-Você deve realizar um fork deste repositório e, ao finalizar, enviar o link do seu repositório para a nossa equipe. Lembre-se, NÃO é necessário criar um Pull Request para isso, nós iremos avaliar e retornar por email o resultado do seu teste.
+<!-- ABOUT THE PROJECT -->
+## Sobre o projeto
 
-# 🚨 Requisitos
+There are many great README templates available on GitHub, however, I didn't find one that really suit my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
 
-- A API deverá ser construída em Python
-- Implementar autenticação e deverá seguir o padrão **JWT**, lembrando que o token a ser recebido deverá ser no formato **Bearer**
-- Recomendamos uso de Flask ou Django como framework, no  entanto outros frameworks serão aceitos.
-- Para a comunicação com o banco de dados utilize algum **ORM**/**ODM**
-- Bancos relacionais permitidos:
-      - MySQL
-      - MariaDB
-      - Postgres
-- Bancos não relacionais permitidos:
-      - MongoDB
-- Sua API deverá seguir os padrões Rest na construção das rotas e retornos
-- Sua API deverá conter a collection/variáveis do postman ou algum endpoint da documentação em openapi para a realização do teste
-- Descrever de forma clara em seu README os passos para executar seu projeto.
-# 🕵🏻‍♂️ Itens a serem avaliados
+Here's why:
+* Your time should be focused on creating something amazing. A project that solves a problem and helps others
+* You shouldn't be doing the same tasks over and over like creating a README from scratch
+* You should element DRY principles to the rest of your life :smile:
 
-- Estrutura do Projeto
-- Segurança da API, como autenticação, senhas salvas no banco, SQL Injection e outros
-- Boas práticas da Linguagem/Framework
-- Seu projeto deverá seguir tudo o que foi exigido na seção [O que desenvolver?](##--o-que-desenvolver)
-- Migrations para a criação das tabelas do banco relacional caso seja escolhido um banco relacional.
+Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have have contributed to expanding this template!
 
-# 🎁 Extra
+A list of commonly used resources that I find helpful are listed in the acknowledgements.
 
-Esses itens não são obrigatórios, porém desejados.
+### Frameworks e bibliotecas
 
-- Testes unitários
-- Linter
-- Code Formater
+* [Django](https://www.djangoproject.com/)
+* [Django REST framework](https://www.django-rest-framework.org/)
+* [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
+* [cfscrape]([https://pypi.org/project/cfscrape/])
+* Database: Postgres
+* Para mais detalhes: Veja requirements.txt
 
 
-# 🖥 O que desenvolver?
-Você deverá construir uma API que faça jogos da mega sena, o usuario deverá escolher a quantidade de dezenas por jogo e sua API irá gerar aleatoriamente dezenas para o usuário. O usuário poderá consultar o resultado do ultimo jogo e comparar com suas dezenas para conferir quantos numeros acertou.
+<!-- GETTING STARTED -->
+## Getting Started
 
-- IMPORTANTE: Para obter o ultimo resultado da megasena você deverá fazer um webscrapping no Google. A seguinte pesquisa te traz o que você precisa obter: https://www.google.com/search?q=caixa+mega+sena 
+This is an example of how you may give instructions on setting up your project locally.
+To get a local copy up and running follow these simple example steps.
+
+### Prerequisites
+
+This is an example of how to list things you need to use the software and how to install them.
+* npm
+  ```sh
+  npm install npm@latest -g
+  ```
+
+### Installation
+
+1. Get a free API Key at [https://example.com](https://example.com)
+2. Clone the repo
+   ```sh
+   git clone https://github.com/your_username_/Project-Name.git
+   ```
+3. Install NPM packages
+   ```sh
+   npm install
+   ```
+4. Enter your API in `config.js`
+   ```JS
+   const API_KEY = 'ENTER YOUR API';
+   ```
 
 
-Rotas necessárias para API:
 
-- Usuário
+<!-- USAGE EXAMPLES -->
+## Usage
 
-    - Cadastro
-    - Login
-    - Edição (o usuário deve está autenticado)
-    - Exclusão lógica (O usuário so pode deletar a propria conta)
+Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+
+_For more examples, please refer to the [Documentation](https://example.com)_
 
 
-- Megasena (todos endpoints devem exigir autenticação)
-    
-    - Realizar um novo jogo.
-        - Deverá receber quantos dezenas (entre 6 e 10) o usuário deseja e sortear dezenas de acordo com a quantidade escolhida.
-    - Consultar o resultado da ultima megasena (O webscrapping citado acima).
-    - Ver quantos numeros acertou no seu ultimo jogo.
-    - Listar seus jogos passados.
 
-# 🔗 Links
+<!-- ROADMAP -->
+## Roadmap
 
-- Documentação JWT https://jwt.io/
-- Frameworks:
+See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a list of proposed features (and known issues).
 
-    -   https://www.djangoproject.com
-    -   https://flask.palletsprojects.com/en/1.1.x/
 
-- Bibliotecas que podem te ajudar:
-    - random
-    - pandas
-    - cfscrape
-    - bs4
-    - lxml
 
