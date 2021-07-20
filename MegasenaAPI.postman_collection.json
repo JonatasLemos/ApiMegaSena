@@ -1,0 +1,390 @@
+{
+	"info": {
+		"_postman_id": "f4e58907-e943-48c8-8df1-c8dcabcaff8a",
+		"name": "MegasenaAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "cadastro",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "jonataslemos",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "jonatas@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "*1234abc",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/usuario/cadastro",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"usuario",
+						"cadastro"
+					]
+				},
+				"description": "Realiza o cadastro do usuário"
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "jonataslemos",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "*1234abc",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/usuario/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"usuario",
+						"login"
+					]
+				},
+				"description": "Realiza o login do usuario"
+			},
+			"response": []
+		},
+		{
+			"name": "criar-novo-jogo",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjI2NzUzNzI4LCJqdGkiOiJjMjA4ZGFmMzgyYzI0ZDhmYjA5YWM5MzhmNDJmZjUyNCIsInVzZXJfaWQiOjE3fQ.sMJhGCOFXv-R8RYwzk4joYaKRCga034Hjr6690-OKg0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "dezenas",
+							"value": "6",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/jogo/novo",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"jogo",
+						"novo"
+					]
+				},
+				"description": "Cria um novo jogo da megasena com o número de dezenas escolhido pelo usuário"
+			},
+			"response": []
+		},
+		{
+			"name": "ultimo-sorteio-mega-sena",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjI2NzU0MjAwLCJqdGkiOiI1Yzc4ZDBhZGIwOTg0NjkyOTM4YjlhOTkyZGMxN2IzNiIsInVzZXJfaWQiOjE3fQ.Ryiv74V_KPiZG1sLTHwDotvDNpkHz2enNIvoGrDxsBI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/ultimo-sorteio",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"ultimo-sorteio"
+					]
+				},
+				"description": "Rota para obter o último sorteio da Megasena realizado."
+			},
+			"response": []
+		},
+		{
+			"name": "lista-de-jogos-passados",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjI2NzUzNzI4LCJqdGkiOiJjMjA4ZGFmMzgyYzI0ZDhmYjA5YWM5MzhmNDJmZjUyNCIsInVzZXJfaWQiOjE3fQ.sMJhGCOFXv-R8RYwzk4joYaKRCga034Hjr6690-OKg0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "dezenas",
+							"value": "6",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/lista",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"lista"
+					]
+				},
+				"description": "Retorna todos os jogos do usuario"
+			},
+			"response": []
+		},
+		{
+			"name": "acertos",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjI2NzU0MjAwLCJqdGkiOiI1Yzc4ZDBhZGIwOTg0NjkyOTM4YjlhOTkyZGMxN2IzNiIsInVzZXJfaWQiOjE3fQ.Ryiv74V_KPiZG1sLTHwDotvDNpkHz2enNIvoGrDxsBI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/acertos",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"acertos"
+					]
+				},
+				"description": "Rota que retorna o número de acertos do último jogo."
+			},
+			"response": []
+		},
+		{
+			"name": "editar-usuario",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjI2NzU4Mzc3LCJqdGkiOiI3YWU4YzQzMWE5MzU0ZGYyOWJiZGYyN2FlMjllOGNiNiIsInVzZXJfaWQiOjIxfQ.N2wN85leDBQX3M1cra2gb-rhaQdrD8T6IAVMxw2hSDw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "jonataslemos",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "jonataslemos22@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "*1234abcd",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/usuario/editar",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"usuario",
+						"editar"
+					]
+				},
+				"description": "Rota para editar password,username ou email do usuario"
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjI2NzU5NzQyLCJqdGkiOiIwMTJkNTYyZWNhNjM0ZTg1YmNhZmJhNWFmM2ZhZGY5MCIsInVzZXJfaWQiOjIxfQ.z8P4aVhhK7600uQtW3OaENouI5fcDJrXWk_J1KHNANg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "refresh_token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTYyNjg0NTg0MiwianRpIjoiODg3NmNiZDhmMmE4NDdmZjhlZDRhOWVkZGUxMDZmMDIiLCJ1c2VyX2lkIjoyMX0.Xpl1Za4fUYp2VfRj7kqwW0EHUvcw-p9pE3o1r-xKE14",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/usuario/logout",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"usuario",
+						"logout"
+					]
+				},
+				"description": "Rota para deslogar o usuario."
+			},
+			"response": []
+		},
+		{
+			"name": "deletar-usuario",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjI2NzU0NzE3LCJqdGkiOiIzN2M2NDc0MjhmNDQ0MzA1YTkwZWFmNDg5ODNiYTZiNCIsInVzZXJfaWQiOjE3fQ.XjGjb64GKipOLmvIQjUt16hLtLLXJHohOQClG25o-dk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/usuario/deletar",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"usuario",
+						"deletar"
+					]
+				},
+				"description": "Rota para deletar usuario"
+			},
+			"response": []
+		}
+	]
+}

@@ -1,65 +1,63 @@
-import json
-from django.core.serializers.json import DjangoJSONEncoder
-from django.forms import model_to_dict
-from django.http import JsonResponse
-from django.utils.decorators import method_decorator
-from django.views.decorators.csrf import csrf_exempt
-
-from megasena.models import SorteioMegaSena,NovoJogo
+from rest_framework.response import Response
+from rest_framework import viewsets, generics
+from rest_framework.permissions import IsAuthenticated
+from megasena.models import SorteioMegaSena, NovoJogo
 from megasena.megasena_scraper import MegaSenaDraw
+from megasena.serializers import SorteioMegaSenaSerializer, NovoJogoSerializer, AcertosSerializer, \
+    NovoJogoDezenasSerializer
 from megasena.sorteio import Jogo
-from django.views import View
-from django.core.serializers import serialize
 
-# Create your views here.
-class UltimoSorteioView(View):
-    def get(self,request):
-        MegaSenaDraw()
+
+class UltimoSorteioViewset(viewsets.ReadOnlyModelViewSet):
+    """Viewset do endpoint contendo o ultimo sorteio da megasena"""
+    permission_classes = (IsAuthenticated,)
+    MegaSenaDraw()
+
+    def get_queryset(self):
         ultimo_sorteio = SorteioMegaSena.objects.order_by("-id").values()[0]
-        # ultimo_sorteio_serialized = serialize('python', ultimo_sorteio,cls=DjangoJSONEncoder)
-        data = {"Ultimo sorteio da megasena":ultimo_sorteio}
-        # serialized = simplejson.dumps(ultimo_sorteio,cls=DjangoJSONEncoder)
-        # load_json = simplejson.loads(serialized)
-        return JsonResponse(data)
+        queryset = SorteioMegaSena.objects.filter(id=ultimo_sorteio["id"])
+        return queryset
 
-class ListarJogosView(View):
-    def get(self,request):
-        jogos = NovoJogo.objects.filter(user_id=request.user.id)
-        jogos_serialized = serialize('python', jogos)
-        jogos_serialized_clean = [d['fields'] for d in jogos_serialized]
-        data = {
-            "Jogos passados": jogos_serialized_clean,
-        }
-        # print(type(dict_obj))
-        # serialized = json.dumps(dict_obj,cls=DjangoJSONEncoder)
-        # load_json = json.loads(serialized)
-        return JsonResponse(data)
+    serializer_class = SorteioMegaSenaSerializer
 
-class AcertosView(View):
-    def get(self,request):
-        jogos = NovoJogo.objects.filter(user_id=request.user.id).order_by("-id").values()[0]
-        data = {
-            "Numero de dezenas certas no ultimo jogo": jogos["acertos"],
-        }
-        return JsonResponse(data)
 
-@method_decorator(csrf_exempt, name='dispatch')
-class NovoJogoView(View):
-    def post(self,request):
-        MegaSenaDraw()
-        data = json.loads(request.body.decode("utf-8"))
-        dezenas = data.get('dezenas')
-        user_id = data.get('user_id')
-        if dezenas >= 6 and dezenas <= 10:
-            Jogo(dezenas)
-            jogos = NovoJogo.objects.filter(user_id=user_id).order_by("-id").values()[0]
-            data = {
-                "Novo jogo": jogos
-            }
-            return JsonResponse(data,status=201)
+class ListarJogosViewset(viewsets.ReadOnlyModelViewSet):
+    """Viewset do endpoint contendo a lista de ultimos jogos do usuario"""
+    permission_classes = (IsAuthenticated,)
+
+    def get_queryset(self):
+        queryset = NovoJogo.objects.filter(user_id=self.request.user.id)
+        return queryset
+
+    serializer_class = NovoJogoSerializer
+
+
+class AcertosViewset(viewsets.ReadOnlyModelViewSet):
+    """Viewset do endpoint com o numero de acertos no ultimo jogo do usuario"""
+    permission_classes = (IsAuthenticated,)
+
+    def get_queryset(self):
+        game_list = NovoJogo.objects.filter(user_id=self.request.user.id)
+        if len(game_list) != 0:
+            acertos = NovoJogo.objects.filter(user_id=self.request.user.id).order_by("-id").values()[0]
+            queryset = NovoJogo.objects.filter(id=acertos["id"])
+            return queryset
+        queryset = []
+        return queryset
+
+    serializer_class = AcertosSerializer
+
+
+class NovoJogoView(generics.CreateAPIView):
+    """Criar um novo jogo com quantidade de dezenas escolhida pelo usuario"""
+    permission_classes = (IsAuthenticated,)
+    serializer_class = NovoJogoDezenasSerializer
+
+    def post(self, request, *args, **kwargs):
+        dezenas = int(request.data.get('dezenas'))
+        usuario = request.user
+        if 6 <= dezenas <= 10:
+            Jogo(dezenas, usuario)
+            return Response({"message": f"Jogo com {dezenas} dezenas criado"})
         else:
-            data = {
-                "message": "O numero de dezenas deve estar entre 6 e 10"
-            }
-            return JsonResponse(data)
-
+            return Response({"message": "A dezena deve estar entre 6 e 10"})

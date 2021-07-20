@@ -2,9 +2,9 @@ import random
 from datetime import datetime,timedelta
 import pytz
 tz = pytz.timezone('America/Sao_Paulo')
-min = 0
-max = 60
-range_values = range(min, max + 1)
+min_value = 0
+max_value = 60
+range_values = range(min_value, max_value + 1)
 sorteio = random.sample(range_values, 6)
 random_dates = [datetime.now(tz) - random.random() * timedelta(days=7) for i in range(3)]
 instances = []
