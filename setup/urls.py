@@ -1,20 +1,15 @@
-from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path,include
 from rest_framework import routers
-from megasena.views import UltimoSorteioViewset,ListarJogosViewset,AcertosViewset
-from rest_framework_jwt.views import obtain_jwt_token
+from megasena.urls import megasena_router
 
-router = routers.DefaultRouter()
-router.register('ultimo-sorteio', UltimoSorteioViewset, basename='UltimoSorteio')
-router.register('listar-jogos', ListarJogosViewset, basename='ListarJogos')
-router.register('acertos', AcertosViewset, basename='Acertos')
-# router.register('novo-jogo', NovoJogoViewset, basename='NovoJogo')
+router_config = routers.DefaultRouter()
+router_config.get_api_root_view().cls.__name__ = "Api Megasena"
+router_config.get_api_root_view().cls.__doc__ = "Api para simular jogos e comparar com o ultimo sorteio da Megasena"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(router.urls) ),
-    path('', include('megasena.urls')),
-    path('', include('users.urls')),
-    url(r'^api-token-auth/', obtain_jwt_token),
+    path('', include(megasena_router.urls)),
+    path('jogo/', include('megasena.urls')),
+    path('usuario/', include('users.urls')),
 ]
