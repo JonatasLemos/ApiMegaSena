@@ -23,6 +23,6 @@ class NovoJogo(models.Model):
     dezena8 = models.PositiveSmallIntegerField(null=True)
     dezena9 = models.PositiveSmallIntegerField(null=True)
     dezena10 = models.PositiveSmallIntegerField(null=True)
-    dezenas = models.PositiveSmallIntegerField(choices=[(i,f'{i} dezena(s)') for i in range(1,11)])
+    dezenas = models.PositiveSmallIntegerField(choices=[(i,f'{i} dezena(s)') for i in range(6,11)])
     acertos = models.PositiveSmallIntegerField()
     date = models.DateTimeField(default=timezone.now)
