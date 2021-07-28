@@ -10,7 +10,6 @@ class Jogo:
     range_values = range(min, max + 1)
     dezenas_mega_sena = [f'dezena{i}' for i in range(1, 7)]
     ultimo_sorteio = SorteioMegaSena.objects.order_by("-date").values_list(*dezenas_mega_sena)[0]
-
     def __init__(self, dezenas, usuario):
         self.dezenas = dezenas
         self.usuario = usuario

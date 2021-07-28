@@ -40,6 +40,7 @@ class CadastroView(generics.CreateAPIView):
 
 class DeletarView(generics.DestroyAPIView):
     """View para deletar usuario"""
+    permission_classes = (IsAuthenticated,)
     serializer_class = UserSerializer
 
     def delete(self, request, *args, **kwargs):
@@ -50,6 +51,7 @@ class DeletarView(generics.DestroyAPIView):
 
 class EditarView(generics.UpdateAPIView):
     """View para editar usuario"""
+    permission_classes = (IsAuthenticated,)
     serializer_class = UserSerializer
 
     def patch(self, request, *args, **kwargs):
@@ -67,12 +69,11 @@ class EditarView(generics.UpdateAPIView):
         except Exception as e:
             return e.args[0]
         user.save()
-        return Response({"mensagem": "pao"})
+        return Response({"mensagem": "Edicoes realizadas com sucesso"})
 
 
 class LogoutView(APIView):
     """View para realizar o logout inserindo o token na blacklist"""
-    permission_classes = (IsAuthenticated,)
 
     def post(self, request):
         try:

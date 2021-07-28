@@ -40,7 +40,7 @@ class AcertosViewset(viewsets.ReadOnlyModelViewSet):
         game_list = NovoJogo.objects.filter(user_id=self.request.user.id)
         if len(game_list) != 0:
             acertos = NovoJogo.objects.filter(user_id=self.request.user.id).order_by("-id").values()[0]
-            queryset = NovoJogo.objects.filter(id=acertos["id"])
+            queryset = NovoJogo.objects.filter(id=acertos["acertos"])
             return queryset
         queryset = []
         return queryset
