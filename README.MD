@@ -33,7 +33,7 @@ Todas as requisições (excetuando cadastro) só são feitas com usuário autent
 #### Passos para executar o projeto:
 0 - Clonar repositorio
 ```
-git clone git@bitbucket.org:JonatasLemos93/teste-python-backend.git
+git clone git@github.com:JonatasLemos/ApiMegaSena.git
 ```
 1 - Instalar requerimentos num ambiente virtual
 ```
